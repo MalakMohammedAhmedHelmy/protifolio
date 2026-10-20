@@ -1,0 +1,1644 @@
+/* ================= GENERAL ================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', 'DM Sans', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #080817 0%,
+        #11103A 30%,
+        #29206B 55%,
+        #3B2580 75%,
+        #171331 100%
+    );
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* ================= STARS ================= */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+/* ================= BACKGROUND PLANETS ================= */
+
+.bg-planets {
+    position: fixed;
+    inset: 0;
+    z-index: 2;            /* above the dark .layer, below the page content */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-planet {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, var(--c1), var(--c2) 55%, var(--c3) 100%);
+    box-shadow:
+        inset -25px -25px 60px rgba(0, 0, 0, 0.6),
+        0 0 60px var(--glow);
+    animation: bgFloat 9s ease-in-out infinite;
+}
+
+/* craters */
+.bg-planet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(0, 0, 0, 0.25) 0 8%, transparent 9%),
+        radial-gradient(circle at 66% 30%, rgba(0, 0, 0, 0.2) 0 6%, transparent 7%),
+        radial-gradient(circle at 55% 72%, rgba(0, 0, 0, 0.22) 0 10%, transparent 11%);
+}
+
+/* Saturn ring */
+.bg-planet.ring::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 215%;
+    height: 215%;
+    border: 3px solid rgba(191, 166, 242, 0.55);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(72deg) rotateZ(-20deg);
+}
+
+/* top-left, cropped by the edge */
+.bp1 {
+    width: 260px;
+    height: 260px;
+    left: -110px;
+    top: 14%;
+    --c1: #c9a8ff; --c2: #7c4dd6; --c3: #2a1560; --glow: rgba(124, 77, 214, 0.5);
+}
+
+/* top-right, small with a ring */
+.bp2 {
+    width: 80px;
+    height: 80px;
+    right: 7%;
+    top: 16%;
+    animation-delay: -3s;
+    --c1: #f0d6ff; --c2: #a855f7; --c3: #3B2580; --glow: rgba(168, 85, 247, 0.55);
+}
+
+/* bottom-right, big and cropped */
+.bp3 {
+    width: 380px;
+    height: 380px;
+    right: -150px;
+    bottom: -150px;
+    animation-delay: -5s;
+    --c1: #8b6cf5; --c2: #3B2580; --c3: #0d0a2a; --glow: rgba(139, 108, 245, 0.45);
+}
+
+/* bottom-left, small */
+.bp4 {
+    width: 56px;
+    height: 56px;
+    left: 9%;
+    bottom: 12%;
+    animation-delay: -7s;
+    --c1: #ffd6f6; --c2: #d36ad8; --c3: #5a1d63; --glow: rgba(211, 106, 216, 0.5);
+}
+
+@keyframes bgFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+@media (max-width: 768px) {
+    .bg-planet { opacity: 0.5; }
+}
+
+/* ================= GENERIC OVERLAY LAYER ===================== */
+
+.layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 8, 8, 0.55);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ================= HERO ================= */
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ================= astronaut ================= */
+
+.astronaut {
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 400px;
+    animation: floatAstronaut 6s ease-in-out infinite;
+}
+
+.astronaut img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes floatAstronaut {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-25px) rotate(4deg);
+    }
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+/* ================= NAVBAR (glass capsule) ================= */
+
+nav {
+    position: absolute;
+    top: 22px;
+    left: 4%;
+    width: 92%;
+    height: 70px;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+    border: 1px solid rgba(191, 166, 242, 0.35);
+    border-radius: 50px;              /* capsule shape */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(168, 85, 247, 0.18);
+}
+
+/* ================= LOGO ================= */
+
+.logo {
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.logo > i {
+    color: #bfa6f2;
+    font-size: 20px;
+}
+
+.logo h2 {
+    color: white;
+    font-size: 23px;
+    font-weight: 900;
+    font-family: 'Mogra', cursive;
+    letter-spacing: 1px;
+}
+
+/* ================= NAV LINKS ================= */
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.nav-links li a {
+    position: relative;
+    color: #bdbdbd;
+    text-decoration: none;
+    font-family: 'Mogra', cursive;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #bfa6f2;
+}
+
+/* ================= ICON LIST ================= */
+
+.icon-list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.icon-list a {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.icon-list a:hover {
+    border-color: #bfa6f2;
+    transform: translateY(-2px);
+}
+
+/* ================= HERO CONTENT ================= */
+
+.content {
+    width: 90%;
+    max-width: 1250px;
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+/* ================= TITLE ================= */
+
+.content h1 {
+    width: 750px;
+    max-width: 100%;
+    margin-bottom: 22px;
+    color: #bfa6f2;
+    font-size: 60px;
+    font-family: 'Mogra', cursive;
+    line-height: 0.98;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.content p {
+    color: #fbfbfb;
+    text-shadow: 0 0 20px rgba(191, 166, 242, 0.15);
+    font-family: 'Tektur', cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.description {
+    width: 570px;
+    max-width: 100%;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.buttons a {
+    padding: 13px 20px;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 800;
+    font-family: 'Tektur', cursive;
+    letter-spacing: 0.4px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* ================= VIEW BUTTON ================= */
+
+.view-btn {
+    color: #1d1038;
+    background-color: #a855f7;
+    border: 1px solid #a855f7;
+}
+
+.view-btn:hover {
+    background-color: #bfa6f2;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
+}
+
+.view-btn i {
+    margin-left: 7px;
+}
+
+/* ================= DOWNLOAD BUTTON ================= */
+
+.download-btn {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid #555;
+}
+
+.download-btn:hover {
+    color: #1d1038;
+    background-color: #bfa6f2;
+    border-color: #bfa6f2;
+    transform: translateY(-2px);
+}
+
+.download-btn i {
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+/* ================= ABOUT SECTION ================= */
+
+.about {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    max-width: 950px;
+    padding: 0 20px;
+}
+
+.about-content h2 {
+    margin: 14px 0 20px;
+    font-family: 'Mogra', cursive;
+    font-size: 40px;
+    color: #bfa6f2;
+}
+
+.about-content p {
+    color: #ccc;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+/* ================= ABOUT CARD (floating box) ================= */
+
+.about-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+
+    margin-top: 28px;
+    padding: 30px 35px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(191, 166, 242, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(168, 85, 247, 0.12);
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* still used by the astronaut in the message card */
+@keyframes floatCard {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* ================= ABOUT PHOTO ================= */
+
+.about-photo {
+    flex-shrink: 0;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, #a855f7, #bfa6f2, #3B2580);
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.45);
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    border: 4px solid #11103A;
+}
+
+.about-text h3 {
+    font-family: 'Tektur', cursive;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+/* ================= SKILLS SECTION ================= */
+
+.skills {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.skills-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.skills-content h2 {
+    margin: 14px 0 10px;
+    font-family: 'Mogra', cursive;
+    font-size: 40px;
+    color: #bfa6f2;
+}
+
+.skills-sub {
+    color: #aaa;
+    font-family: 'Tektur', cursive;
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+/* ================= GALAXIES (groups) ================= */
+
+.galaxies {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+}
+
+.galaxy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(191, 166, 242, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(168, 85, 247, 0.12);
+}
+
+.galaxy h3 {
+    margin-bottom: 20px;
+    font-family: 'Tektur', cursive;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* ================= PLANET ================= */
+
+.planet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.sphere {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #fff;
+    background: radial-gradient(circle at 30% 28%, var(--c1), var(--c2) 55%, var(--c3) 100%);
+    box-shadow:
+        inset -6px -6px 12px rgba(0, 0, 0, 0.55),
+        inset 3px 3px 7px rgba(255, 255, 255, 0.18),
+        0 0 16px var(--glow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.sphere i {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+}
+
+.planet:hover .sphere,
+.planet.active .sphere {
+    transform: scale(1.22);
+    box-shadow:
+        inset -6px -6px 12px rgba(0, 0, 0, 0.55),
+        inset 3px 3px 7px rgba(255, 255, 255, 0.25),
+        0 0 30px var(--glow);
+}
+
+.planet:hover .sphere i,
+.planet.active .sphere i {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.planet-name {
+    font-family: 'Tektur', cursive;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ddd;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.planet:hover .planet-name,
+.planet.active .planet-name {
+    color: #bfa6f2;
+}
+
+/* ================= INFO BUBBLE ================= */
+
+.planet::after {
+    content: attr(data-info);
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    padding: 6px 12px;
+    white-space: nowrap;
+    font-family: 'Tektur', cursive;
+    font-size: 12px;
+    color: #fff;
+    background: rgba(41, 32, 107, 0.95);
+    border: 1px solid rgba(191, 166, 242, 0.5);
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 5;
+}
+
+.planet:hover::after,
+.planet.active::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ================= SATURN-STYLE RING ================= */
+
+.has-ring .sphere::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 170%;
+    height: 170%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(72deg) rotateZ(-20deg);
+    pointer-events: none;
+    transition: border-color 0.4s;
+}
+
+.has-ring:hover .sphere::before,
+.has-ring.active .sphere::before {
+    border-color: rgba(255, 255, 255, 0.7);
+    animation: spinRing 3s linear infinite;
+}
+
+@keyframes spinRing {
+    to { transform: translate(-50%, -50%) rotateX(72deg) rotateZ(340deg); }
+}
+
+/* ================= PLANET COLORS ================= */
+
+.p-html    { --c1:#ffb27a; --c2:#e34f26; --c3:#6b1f0a; --glow:rgba(227, 79, 38, 0.6); }
+.p-css     { --c1:#7ec8ff; --c2:#1572b6; --c3:#07294a; --glow:rgba(21, 114, 182, 0.6); }
+.p-js      { --c1:#fff2a0; --c2:#f0c814; --c3:#6b5a00; --glow:rgba(240, 200, 20, 0.55); }
+.p-js i    { color:#1d1038; text-shadow:none; }
+.p-php     { --c1:#b3b8f5; --c2:#777bb4; --c3:#2a2c5e; --glow:rgba(119, 123, 180, 0.6); }
+.p-react   { --c1:#b6f3ff; --c2:#27c2e6; --c3:#0b4558; --glow:rgba(97, 218, 251, 0.6); }
+.p-laravel { --c1:#ff9a8f; --c2:#ff2d20; --c3:#5c0a06; --glow:rgba(255, 45, 32, 0.6); }
+.p-mysql   { --c1:#8fe3ef; --c2:#00758f; --c3:#00262e; --glow:rgba(0, 117, 143, 0.65); }
+.p-git     { --c1:#ffa27a; --c2:#f05032; --c3:#5c1608; --glow:rgba(240, 80, 50, 0.6); }
+.p-vscode  { --c1:#8fd0ff; --c2:#007acc; --c3:#00294a; --glow:rgba(0, 122, 204, 0.65); }
+
+/* ================= SOLAR SYSTEM ================= */
+
+.solar {
+    position: relative;
+    width: var(--size, 400px);
+    height: var(--size, 400px);
+    margin: 0 auto;
+}
+
+/* ---------- THE SUN ---------- */
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #4a2a00;
+    background: radial-gradient(circle at 35% 30%, #fff7b0, #ffc233 50%, #ff8a00 100%);
+    box-shadow:
+        0 0 30px rgba(255, 180, 40, 0.9),
+        0 0 70px rgba(255, 140, 0, 0.55),
+        0 0 120px rgba(255, 100, 0, 0.3);
+    animation: sunPulse 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+.sun i {
+    font-size: 22px;
+}
+
+.sun span {
+    font-family: 'Tektur', cursive;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+@keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(255,180,40,.9), 0 0 70px rgba(255,140,0,.55), 0 0 120px rgba(255,100,0,.3); }
+    50%      { box-shadow: 0 0 40px rgba(255,180,40,1),  0 0 90px rgba(255,140,0,.7),  0 0 150px rgba(255,100,0,.4); }
+}
+
+/* ---------- ORBIT ---------- */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(var(--r) * 2);
+    height: calc(var(--r) * 2);
+    margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1);
+    border: 1px dashed rgba(191, 166, 242, 0.3);
+    border-radius: 50%;
+    animation: orbitSpin var(--t, 20s) linear infinite;
+    transform: rotate(var(--start, 0deg));
+}
+
+@keyframes orbitSpin {
+    from { transform: rotate(var(--start, 0deg)); }
+    to   { transform: rotate(calc(var(--start, 0deg) + 360deg)); }
+}
+
+/* the planet sits on the orbit line */
+.orbit .planet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: counterSpin var(--t, 20s) linear infinite;
+}
+
+/* keeps the planet upright while its orbit rotates */
+@keyframes counterSpin {
+    from { transform: translate(-50%, -50%) rotate(calc(var(--start, 0deg) * -1)); }
+    to   { transform: translate(-50%, -50%) rotate(calc(var(--start, 0deg) * -1 - 360deg)); }
+}
+
+/* pause the orbit when hovering a planet */
+.orbit:hover,
+.orbit:hover .planet,
+.orbit:has(.planet.active),
+.orbit:has(.planet.active) .planet {
+    animation-play-state: paused;
+}
+
+/* second planet sits on the opposite side of the same orbit */
+.orbit .planet.opp {
+    top: 100%;
+}
+
+/* the label hangs under the sphere so the sphere itself sits on the orbit line */
+.orbit .planet-name {
+    position: absolute;
+    top: 100%;
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+/* info bubble under the label */
+.orbit .planet::after {
+    bottom: auto;
+    top: calc(100% + 26px);
+}
+
+.solar {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* ================= PROJECTS SECTION ================= */
+
+.projects {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.projects-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.projects-content h2 {
+    margin: 14px 0 12px;
+    font-family: 'Mogra', cursive;
+    font-size: 40px;
+    color: #bfa6f2;
+}
+
+.projects-sub {
+    max-width: 650px;
+    margin: 0 auto 50px;
+    color: #aaa;
+    font-family: 'Tektur', cursive;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* ================= PROJECT CARD ================= */
+
+.project-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 28px 30px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(191, 166, 242, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(168, 85, 247, 0.12);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(191, 166, 242, 0.7);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 55px rgba(168, 85, 247, 0.35);
+}
+
+.project-num {
+    position: absolute;
+    top: 16px;
+    left: 22px;
+    font-family: 'Mogra', cursive;
+    font-size: 26px;
+    color: rgba(191, 166, 242, 0.35);
+}
+
+.project-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #c9a8ff, #a855f7 55%, #3B2580 100%);
+    box-shadow:
+        inset -6px -6px 14px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(168, 85, 247, 0.55);
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-icon {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.project-card h3 {
+    margin-bottom: 12px;
+    font-family: 'Tektur', cursive;
+    font-size: 22px;
+    color: #fff;
+}
+
+.project-card p {
+    margin-bottom: 26px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ================= PROJECT LINKS ================= */
+
+.project-links {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    text-decoration: none;
+    font-family: 'Tektur', cursive;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.repo-btn {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #555;
+}
+
+.repo-btn:hover {
+    color: #1d1038;
+    background: #bfa6f2;
+    border-color: #bfa6f2;
+    transform: translateY(-2px);
+}
+
+.live-btn {
+    color: #1d1038;
+    background: #a855f7;
+    border: 1px solid #a855f7;
+}
+
+.live-btn:hover {
+    background: #bfa6f2;
+    border-color: #bfa6f2;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
+}
+
+/* ================= COMING SOON CARD ================= */
+
+.coming-soon {
+    justify-content: center;
+    border-style: dashed;
+}
+
+.coming-soon:hover .project-icon {
+    transform: scale(1.1);
+}
+
+.coming-soon p {
+    margin-bottom: 0;
+}
+
+.soon-star {
+    margin-top: 18px;
+    font-size: 22px;
+    animation: twinkle 2.5s infinite ease-in-out;
+}
+
+/* ================= CERTIFICATES SECTION ================= */
+
+.certificates {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.certs-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.certs-content h2 {
+    margin: 14px 0 12px;
+    font-family: 'Mogra', cursive;
+    font-size: 40px;
+    color: #bfa6f2;
+}
+
+.certs-sub {
+    max-width: 650px;
+    margin: 0 auto 50px;
+    color: #aaa;
+    font-family: 'Tektur', cursive;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* ================= CERT CARD (transparent glass) ================= */
+
+.cert-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 26px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(191, 166, 242, 0.25);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(168, 85, 247, 0.12);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(191, 166, 242, 0.7);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 55px rgba(168, 85, 247, 0.35);
+}
+
+.cert-num {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    z-index: 2;
+    font-family: 'Mogra', cursive;
+    font-size: 24px;
+    color: rgba(191, 166, 242, 0.55);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* ================= CERTIFICATE IMAGE AREA ================= */
+
+.cert-preview {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 46px;
+    color: rgba(191, 166, 242, 0.6);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(191, 166, 242, 0.35);
+    border-radius: 12px;
+}
+
+.cert-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
+}
+
+.cert-card:hover .cert-preview img {
+    transform: scale(1.04);
+}
+
+/* ================= CERT TEXT ================= */
+
+.cert-card h3 {
+    margin-bottom: 14px;
+    font-family: 'Tektur', cursive;
+    font-size: 21px;
+    color: #fff;
+}
+
+.cert-details {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.cert-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cert-details li i {
+    margin-top: 4px;
+    color: #bfa6f2;
+}
+
+.cert-details li strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ================= UPCOMING CARD ================= */
+
+.cert-card.upcoming {
+    border-style: dashed;
+}
+
+.upcoming-badge {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    z-index: 2;
+    padding: 5px 12px;
+    font-family: 'Tektur', cursive;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1d1038;
+    background: #bfa6f2;
+    border-radius: 20px;
+    animation: twinkle 2.5s infinite ease-in-out;
+}
+
+.certs-more {
+    margin-top: 40px;
+    color: #bfa6f2;
+    font-family: 'Tektur', cursive;
+    font-size: 16px;
+}
+
+/* ================= MESSAGE SECTION ================= */
+
+.message {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 20px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+}
+
+.message-wrap {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* ---------- planet on top edge ---------- */
+.msg-planet {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    z-index: 5;
+    width: 22px;
+    height: 22px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #d9c2ff, #a855f7 60%, #3B2580);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.8);
+}
+
+.msg-planet::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 190%;
+    height: 190%;
+    border: 2px solid rgba(191, 166, 242, 0.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(72deg);
+}
+
+/* ---------- main card ---------- */
+.message-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 55px 45px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(191, 166, 242, 0.45);
+    border-radius: 28px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(168, 85, 247, 0.18);
+}
+
+/* ================= MESSAGE LEFT ================= */
+
+.msg-left {
+    position: relative;
+    min-height: 480px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.get-in-touch {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #9d8cf0;
+}
+
+.gt-line {
+    flex: 1;
+    max-width: 190px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(157, 140, 240, 0.7), transparent);
+}
+
+.get-in-touch b {
+    font-weight: 400;
+    color: #bfa6f2;
+}
+
+.msg-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 58px;
+    line-height: 1;
+    color: #d9ccff;
+    margin-bottom: 22px;
+}
+
+.msg-left h2 em {
+    display: block;
+    margin-top: 4px;
+    font-family: 'Dancing Script', cursive;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 66px;
+    color: #8b6cf5;
+}
+
+.msg-left h2 em b {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #a78bfa;
+}
+
+.msg-intro {
+    max-width: 340px;
+    margin-bottom: 28px;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #b7abf0;
+}
+
+.msg-info {
+    list-style: none;
+    margin-bottom: 22px;
+}
+
+.msg-info li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    color: #b7abf0;
+    font-size: 16px;
+}
+
+.msg-info li i {
+    width: 26px;
+    font-size: 22px;
+    text-align: center;
+    color: #a78bfa;
+}
+
+.msg-info a {
+    color: #b7abf0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.msg-info a:hover {
+    color: #fff;
+}
+
+/* ---------- socials ---------- */
+.msg-socials {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.msg-socials a {
+    font-size: 26px;
+    color: #a78bfa;
+    transition: 0.3s;
+}
+
+.msg-socials a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.handle {
+    margin-left: 6px;
+    font-size: 14px;
+    color: #9d8cf0;
+}
+
+/* ---------- handwritten text ---------- */
+.msg-script {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    z-index: 2;
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    line-height: 1.3;
+    color: #8b6cf5;
+    transform: rotate(-8deg);
+}
+
+.msg-script b {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* ---------- astronaut ---------- */
+.msg-astronaut {
+    position: absolute;
+    right: -20px;
+    bottom: -55px;
+    width: 250px;
+    opacity: 0.95;
+    pointer-events: none;
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+/* ================= MESSAGE RIGHT (FORM) ================= */
+
+.msg-right {
+    padding: 38px 34px;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(191, 166, 242, 0.2);
+    border-radius: 22px;
+}
+
+.field {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.field > i {
+    position: absolute;
+    top: 21px;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #a78bfa;
+    pointer-events: none;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 17px 20px 17px 56px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #e6deff;
+    background: rgba(8, 8, 23, 0.55);
+    border: 1px solid rgba(157, 140, 240, 0.45);
+    border-radius: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #9d8cf0;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #bfa6f2;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* ---------- send button ---------- */
+.send-btn {
+    width: 100%;
+    padding: 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, #a78bfa, #7c5cf0);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(124, 92, 240, 0.4);
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(124, 92, 240, 0.65);
+}
+
+.send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-status {
+    margin-top: 16px;
+    min-height: 20px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #bfa6f2;
+}
+
+.form-status.error {
+    color: #ff8a8a;
+}
+
+/* ================= FLOAT ANIMATION (all cards + nav) ================= */
+/* بنستخدم خاصية translate المستقلة عشان متتعارضش مع transform بتاع الـ hover */
+
+@keyframes floatY {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -12px; }
+}
+
+.about-card,
+.galaxy,
+.project-card,
+.cert-card,
+.message-card,
+nav {
+    animation: floatY 5s ease-in-out infinite;
+}
+
+/* كل كارت يبدأ في وقت مختلف عشان الحركة متبقاش متزامنة */
+.galaxy                 { animation-delay: -1s; }
+.project-card:nth-child(2),
+.cert-card:nth-child(2) { animation-delay: -1.2s; }
+.project-card:nth-child(3),
+.cert-card:nth-child(3) { animation-delay: -2.4s; }
+.project-card:nth-child(4),
+.cert-card:nth-child(4) { animation-delay: -3.6s; }
+
+.message-card,
+nav {
+    animation-duration: 6s;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    /* hero */
+    nav {
+        top: 14px;
+        height: auto;
+        padding: 16px 20px;
+        border-radius: 30px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .nav-links li a {
+        font-size: 12px;
+    }
+
+    .content h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+    }
+
+    .content p {
+        font-size: 22px;
+    }
+
+    .astronaut {
+        width: 220px;
+        top: 80%;
+        left: 75%;
+        opacity: 0.7;
+    }
+
+    /* message */
+    .message-card {
+        grid-template-columns: 1fr;
+        padding: 40px 22px;
+    }
+
+    .msg-left {
+        min-height: auto;
+        padding-bottom: 170px;
+    }
+
+    .msg-left h2 {
+        font-size: 44px;
+    }
+
+    .msg-left h2 em {
+        font-size: 50px;
+    }
+
+    .msg-astronaut {
+        width: 190px;
+        bottom: -30px;
+    }
+
+    .msg-right {
+        padding: 26px 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* about */
+    .about {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 0;
+    }
+
+    .about-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+        padding: 25px 20px;
+    }
+
+    .about-photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* skills */
+    .skills-content h2 {
+        font-size: 32px;
+    }
+
+    .solar {
+        transform: scale(0.62);
+        transform-origin: top center;
+        margin-bottom: calc(var(--size, 400px) * -0.38);
+    }
+
+    /* projects */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-content h2 {
+        font-size: 32px;
+    }
+
+    .project-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* certificates */
+    .certs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certs-content h2 {
+        font-size: 30px;
+    }
+
+    .cert-preview {
+        height: 170px;
+    }
+}
+
+@media (max-width: 480px) {
+    .solar {
+        transform: scale(0.5);
+        margin-bottom: calc(var(--size, 400px) * -0.5);
+    }
+}

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Malak Mohamed | Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mogra&family=Tektur:wght@400..900&family=Dancing+Script:wght@500;600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <!-- ================= HERO ================= -->
+    <section class="header" id="HOME">
+
+        <div class="astronaut">
+            <img src="img/astronaut.jpg" alt="astronaut floating">
+        </div>
+
+        <div class="layer"></div>
+
+        <div class="hero-inner">
+
+            <!-- NAVBAR -->
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-rocket" style="color: white;"></i>
+                    <div>
+                        <h2>Malak Mohamed</h2>
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#HOME">HOME</a></li>
+                    <li><a href="#ABOUT">ABOUT</a></li>
+                    <li><a href="#SKILLS">SKILLS</a></li>
+                    <li><a href="#PROJECTS">PROJECTS</a></li>
+                    <li><a href="#CERTIFICATES">CERTIFICATES</a></li>
+                    <li><a href="#MESSAGE">MESSAGE FOR ME</a></li>
+                </ul>
+            </nav>
+
+            <!-- HERO CONTENT -->
+            <div class="content">
+
+                <h1>
+                    Hi, I'm
+                    <span>Malak Mohamed</span>
+                </h1>
+
+                <p>Full Stack Web Developer</p>
+
+                <p class="description">
+                    I turn ideas into modern, responsive web experiences.
+                </p>
+
+                <div class="buttons">
+                    <a href="#PROJECTS" class="view-btn">
+                        View My Work
+                        <i class="fa-solid fa-rocket" style="color: #1d1038;"></i>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/115DOardw0Jj0cd-V2iPdds0SAD2gUI_O/view?usp=sharing" download class="download-btn">
+                        Download CV
+                        <i class="fa-solid fa-download" style="color: rgb(255, 255, 255);"></i>
+                    </a>
+                </div>
+
+                <div class="icon-list">
+                    <a href="https://github.com/MalakMohammedAhmedHelmy" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github" style="color: rgb(177, 151, 252);"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/malak-mohamed-2b0b1b1b6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fa-brands fa-square-linkedin" style="color: rgb(177, 151, 252);"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@@malakmohamed5007" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok" style="color: rgb(177, 151, 252);"></i>
+                    </a>
+                    <a href="https://wa.me/qr/TUWGHDGMVEG5M1?s=v" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp" style="color: rgb(177, 151, 252);"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= ABOUT ME ================= -->
+    <section class="about" id="ABOUT">
+
+        <div class="layer"></div>
+
+        <div class="about-content">
+            <span><i class="fa-regular fa-star" style="color: rgb(177, 151, 252);"></i></span>
+            <h2>About Me</h2>
+
+            <div class="about-card">
+
+                <div class="about-photo">
+                    <img src="img/myphoto.jpg" alt="Malak Mohamed">
+                </div>
+
+                <div class="about-text">
+                    <h3>Hi, I'm Malak!</h3>
+                    <p>
+                        I'm a Full Stack Developer who enjoys turning ideas into functional, creative, and visually appealing web experiences. I'm passionate about web development, problem-solving, and building websites that combine clean code with thoughtful design.
+                    </p>
+                    <p>
+                        Currently, I'm a third-year Business Information Systems student at Obour Institutes, continuously developing my skills and exploring new technologies to grow as a developer.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="skills" id="SKILLS">
+
+        <div class="layer"></div>
+
+        <div class="skills-content">
+            <span><i class="fa-regular fa-star" style="color: rgb(177, 151, 252);"></i></span>
+            <h2>My Skills</h2>
+            <p class="skills-sub">Hover over a planet to explore my universe</p>
+
+            <div class="galaxies">
+
+                <!-- ONE GALAXY: all technologies orbit the Programming sun -->
+                <div class="galaxy">
+                    <h3>My Tech Galaxy</h3>
+
+                    <div class="solar" style="--size:600px">
+                        <div class="sun"><i class="fa-solid fa-code"></i><span>Programming</span></div>
+
+                        <!-- Orbit 1 -->
+                        <div class="orbit" style="--r:85px; --t:16s; --start:0deg">
+                            <div class="planet p-html" data-info="Language · The structure of the web">
+                                <div class="sphere"><i class="fa-brands fa-html5"></i></div>
+                                <span class="planet-name">HTML5</span>
+                            </div>
+                            <div class="planet opp p-css has-ring" data-info="Language · Styling & layouts">
+                                <div class="sphere"><i class="fa-brands fa-css3-alt"></i></div>
+                                <span class="planet-name">CSS3</span>
+                            </div>
+                        </div>
+
+                        <!-- Orbit 2 -->
+                        <div class="orbit" style="--r:130px; --t:22s; --start:40deg">
+                            <div class="planet p-js" data-info="Language · Brings pages to life">
+                                <div class="sphere"><i class="fa-brands fa-js"></i></div>
+                                <span class="planet-name">JavaScript</span>
+                            </div>
+                            <div class="planet opp p-php has-ring" data-info="Language · Server-side logic">
+                                <div class="sphere"><i class="fa-brands fa-php"></i></div>
+                                <span class="planet-name">PHP</span>
+                            </div>
+                        </div>
+
+                        <!-- Orbit 3 -->
+                        <div class="orbit" style="--r:175px; --t:28s; --start:80deg">
+                            <div class="planet p-react has-ring" data-info="Framework · Component-based UIs">
+                                <div class="sphere"><i class="fa-brands fa-react"></i></div>
+                                <span class="planet-name">React.js</span>
+                            </div>
+                            <div class="planet opp p-laravel" data-info="Framework · Elegant PHP framework">
+                                <div class="sphere"><i class="fa-brands fa-laravel"></i></div>
+                                <span class="planet-name">Laravel</span>
+                            </div>
+                        </div>
+
+                        <!-- Orbit 4 -->
+                        <div class="orbit" style="--r:220px; --t:34s; --start:120deg">
+                            <div class="planet p-mysql has-ring" data-info="Database · Relational database">
+                                <div class="sphere"><i class="fa-solid fa-database"></i></div>
+                                <span class="planet-name">MySQL</span>
+                            </div>
+                            <div class="planet opp p-git" data-info="Tool · Version control">
+                                <div class="sphere"><i class="fa-brands fa-git-alt"></i></div>
+                                <span class="planet-name">Git & GitHub</span>
+                            </div>
+                        </div>
+
+                        <!-- Orbit 5 -->
+                        <div class="orbit" style="--r:265px; --t:40s; --start:160deg">
+                            <div class="planet p-vscode has-ring" data-info="Tool · My code editor">
+                                <div class="sphere"><i class="fa-solid fa-code"></i></div>
+                                <span class="planet-name">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="projects" id="PROJECTS">
+
+        <div class="layer"></div>
+
+        <div class="projects-content">
+            <span><i class="fa-regular fa-star" style="color: rgb(177, 151, 252);"></i></span>
+            <h2>My Projects</h2>
+            <p class="projects-sub">
+                A collection of projects where I turn ideas into functional web experiences and put my development skills into practice.
+            </p>
+
+            <div class="projects-grid">
+
+                <!-- Project 01 -->
+                <div class="project-card">
+                    <span class="project-num">01</span>
+                    <div class="project-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3>Volt – Gym Website</h3>
+                    <p>
+                        A full-stack gym platform featuring membership subscriptions, a fitness supplements and equipment store, and coach communication.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/MalakMohammedAhmedHelmy/volt" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="https://volt-zeta-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn">
+                            Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 02 -->
+                <div class="project-card">
+                    <span class="project-num">02</span>
+                    <div class="project-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                    <h3>Bakery Website</h3>
+                    <p>
+                        A website showcasing bakery products through an attractive layout and a user-friendly browsing experience.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/MalakMohammedAhmedHelmy/bakery" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="https://bakery-sable-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn">
+                            Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 03 -->
+                <div class="project-card">
+                    <span class="project-num">03</span>
+                    <div class="project-icon"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <h3>Personal Portfolio</h3>
+                    <p>
+                        A personal portfolio showcasing my skills, projects, and journey as a developer through an interactive cosmic design.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/MalakMohammedAhmedHelmy/portfolio" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="https://malak-mohammed-ahmed-helmy-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn">
+                            Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coming soon -->
+                <div class="project-card coming-soon">
+                    <div class="project-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+                    <h3>More Projects Coming Soon...</h3>
+                    <p>New missions are being prepared for launch.</p>
+                    <i class="fa-regular fa-star soon-star" style="color: rgb(177, 151, 252);"></i>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= CERTIFICATES ================= -->
+    <section class="certificates" id="CERTIFICATES">
+
+        <div class="layer"></div>
+
+        <div class="certs-content">
+            <span><i class="fa-regular fa-star" style="color: rgb(177, 151, 252);"></i></span>
+            <h2>Certificates & Achievements</h2>
+            <p class="certs-sub">
+                A collection of certifications and learning experiences that reflect my continuous growth in technology and software development.
+            </p>
+
+            <div class="certs-grid">
+
+                <!-- Certificate 01 -->
+                <div class="cert-card">
+                    <span class="cert-num">01</span>
+
+                    <div class="cert-preview">
+
+                        <img src="img/Digital Literacy.jpg" alt="IBM Digital Literacy">
+                    </div>
+
+                    <h3>Digital Literacy</h3>
+                    <ul class="cert-details">
+                        <li><i class="fa-solid fa-building-columns"></i> <strong>Issued by:</strong> IBM</li>
+                        <li><i class="fa-regular fa-calendar"></i> <strong>Issue Date:</strong> September 2026</li>
+                    </ul>
+        
+                </div>
+
+                <!-- Certificate 02 -->
+                <div class="cert-card">
+                    <span class="cert-num">02</span>
+
+                    <div class="cert-preview">
+                        <img src="img/Steps Towards Programming.jpg" alt="Steps Towards Programming">
+                    </div>
+
+                    <h3>Steps Towards Programming</h3>
+                    <ul class="cert-details">
+                        <li><i class="fa-solid fa-building-columns"></i> <strong>Issued by:</strong> National Cybersecurity and Leadership Development Foundation (NCLDF)</li>
+                        <li><i class="fa-regular fa-calendar"></i> <strong>Issue Date:</strong> October 2025</li>
+                        <li><i class="fa-solid fa-fingerprint"></i> <strong>Credential ID:</strong> Decree No. 383-2025</li>
+                    </ul>
+                </div>
+
+                <!-- Certificate 03 -->
+                <div class="cert-card">
+                    <span class="cert-num">03</span>
+
+                    <div class="cert-preview">
+                        <img src="img/Linux Red Hat Administration.jpg" alt="Linux Red Hat Administration">
+                    </div>
+
+                    <h3>Linux Red Hat Administration</h3>
+                    <ul class="cert-details">
+                        <li><i class="fa-solid fa-building-columns"></i> <strong>Issued by:</strong> National Telecommunication Institute (NTI)</li>
+                        <li><i class="fa-regular fa-calendar"></i> <strong>Issue Date:</strong> July 2025</li>
+                        <li><i class="fa-solid fa-fingerprint"></i> <strong>Credential ID:</strong> 233670</li>
+                    </ul>
+                </div>
+
+                <!-- Certificate 04 (upcoming) -->
+                <div class="cert-card upcoming">
+                    <span class="cert-num">04</span>
+                    <span class="upcoming-badge">Upcoming <i class="fa-regular fa-star"></i></span>
+
+                    <div class="cert-preview">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+
+                    <h3>Full Stack Web Development Using PHP</h3>
+                    <ul class="cert-details">
+                        <li><i class="fa-solid fa-building-columns"></i> <strong>Issued by:</strong> National Telecommunication Institute (NTI)</li>
+                        <li><i class="fa-solid fa-spinner"></i> <strong>Status:</strong> Upcoming <i class="fa-regular fa-star" style="color: rgb(177, 151, 252);"></i></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <p class="certs-more">More achievements coming soon... <i class="fa-regular fa-star"></i></p>
+        </div>
+
+    </section>
+
+    <!-- ================= MESSAGE FOR ME ================= -->
+    <section class="message" id="MESSAGE">
+
+        <div class="layer"></div>
+
+        <div class="message-wrap">
+
+            <div class="msg-planet"></div>
+
+            <div class="message-card">
+
+                <!-- LEFT SIDE -->
+                <div class="msg-left">
+
+                    <div class="get-in-touch">
+                        <span>GET IN TOUCH</span>
+                        <i class="gt-line"></i>
+                        <b>✦</b>
+                    </div>
+
+                    <h2>
+                        Message
+                        <em>for Me <b>✦</b></em>
+                    </h2>
+
+                    <p class="msg-intro">
+                        Have an idea? A project? Or just want to say hi? I'd love to hear from you!
+                    </p>
+
+                    <ul class="msg-info">
+                        <li>
+                            <i class="fa-regular fa-envelope"></i>
+                            <a href="mailto:malakmohmmed771@gmail.com">malakmohmmed771@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Zagazig, Egypt</span>
+                        </li>
+                    </ul>
+
+                    <div class="msg-socials">
+                        <a href="https://github.com/MalakMohammedAhmedHelmy" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.instagram.com/mala_kdesign1" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@@malakmohamed5007" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+
+                    <p class="msg-script">
+                        Let's create <br> something amazing <br> together <b>✦</b>
+                    </p>
+
+                    <img class="msg-astronaut" src="img/astronaut sitting on a rock.jpg" alt="astronaut sitting on a rock">
+                </div>
+
+                <!-- RIGHT SIDE (FORM) -->
+                <div class="msg-right">
+                    <form id="contactForm" action="contact.send" method="POST">
+                       
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+
+                        <div class="field">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="field">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+
+                        <div class="field field-area">
+                            <i class="fa-regular fa-message"></i>
+                            <textarea name="message" placeholder="Your Message..." rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="send-btn">SEND MESSAGE <b>✦</b></button>
+
+                        <p class="form-status" id="formStatus"></p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
