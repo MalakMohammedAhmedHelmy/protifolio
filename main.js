@@ -1,3 +1,4 @@
+
 /* ================= STARS ================= */
 function generateStars(count) {
     const container = document.querySelector(".stars");
@@ -9,8 +10,8 @@ function generateStars(count) {
 
         const x = Math.random() * window.innerWidth;
         const y = Math.random() * window.innerHeight;
-        const delay = Math.random() * 3;        // كل نجمة تبدأ الوميض في وقت مختلف
-        const duration = 2 + Math.random() * 3; // سرعة الوميض تختلف من نجمة للتانية
+        const delay = Math.random() * 3;
+        const duration = 2 + Math.random() * 3;
 
         star.style.left = `${x}px`;
         star.style.top = `${y}px`;
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     generateStars(200);
 });
 
+
 /* ================= PLANETS (click for mobile) ================= */
 document.addEventListener("DOMContentLoaded", () => {
     const planets = document.querySelectorAll(".planet");
@@ -32,11 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
     planets.forEach(planet => {
         planet.addEventListener("click", () => {
             const isActive = planet.classList.contains("active");
+
             planets.forEach(p => p.classList.remove("active"));
-            if (!isActive) planet.classList.add("active");
+
+            if (!isActive) {
+                planet.classList.add("active");
+            }
         });
     });
 });
+
 
 /* ================= TYPING NAME ================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,30 +53,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = el.dataset.text || el.textContent.trim();
     let i = 0;
     let deleting = false;
+
     el.textContent = "";
 
     const tick = () => {
         if (!deleting) {
             i++;
             el.textContent = text.slice(0, i);
+
             if (i === text.length) {
                 deleting = true;
-                return setTimeout(tick, 1800);   // وقفة بعد ما الاسم يكتمل
+                return setTimeout(tick, 1800);
             }
-            return setTimeout(tick, 130);         // سرعة الكتابة
+
+            return setTimeout(tick, 130);
         }
 
         i--;
         el.textContent = text.slice(0, i);
+
         if (i === 0) {
             deleting = false;
             return setTimeout(tick, 500);
         }
-        setTimeout(tick, 70);                     // سرعة المسح
+
+        setTimeout(tick, 70);
     };
 
     setTimeout(tick, 600);
 });
+
 
 /* ================= VOLUNTEER SLIDER ================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -82,39 +95,65 @@ document.addEventListener("DOMContentLoaded", () => {
     const prev = slider.querySelector(".vol-prev");
     const next = slider.querySelector(".vol-next");
 
+    if (!track || !slides.length || !dotsWrap || !prev || !next) return;
+
     let index = 0;
     let timer = null;
 
-    // dots
     slides.forEach((_, i) => {
         const dot = document.createElement("button");
         dot.type = "button";
         dot.className = "vol-dot";
         dot.setAttribute("aria-label", `Photo ${i + 1}`);
-        dot.addEventListener("click", () => { go(i); restart(); });
+
+        dot.addEventListener("click", () => {
+            go(i);
+            restart();
+        });
+
         dotsWrap.appendChild(dot);
     });
+
     const dots = dotsWrap.querySelectorAll(".vol-dot");
 
     function go(i) {
         index = (i + slides.length) % slides.length;
         track.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((d, j) => d.classList.toggle("active", j === index));
+
+        dots.forEach((d, j) => {
+            d.classList.toggle("active", j === index);
+        });
     }
 
-    function start() { timer = setInterval(() => go(index + 1), 4000); }
-    function stop() { clearInterval(timer); }
-    function restart() { stop(); start(); }
+    function start() {
+        stop();
+        timer = setInterval(() => go(index + 1), 4000);
+    }
 
-    prev.addEventListener("click", () => { go(index - 1); restart(); });
-    next.addEventListener("click", () => { go(index + 1); restart(); });
+    function stop() {
+        clearInterval(timer);
+    }
 
-    // pause on hover
+    function restart() {
+        stop();
+        start();
+    }
+
+    prev.addEventListener("click", () => {
+        go(index - 1);
+        restart();
+    });
+
+    next.addEventListener("click", () => {
+        go(index + 1);
+        restart();
+    });
+
     slider.addEventListener("mouseenter", stop);
     slider.addEventListener("mouseleave", start);
 
-    // swipe on mobile
     let startX = null;
+
     slider.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
         stop();
@@ -123,9 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener("touchend", (e) => {
         if (startX !== null) {
             const dx = e.changedTouches[0].clientX - startX;
-            if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+
+            if (Math.abs(dx) > 40) {
+                go(index + (dx < 0 ? 1 : -1));
+            }
+
             startX = null;
         }
+
         start();
     });
 
@@ -133,10 +177,12 @@ document.addEventListener("DOMContentLoaded", () => {
     start();
 });
 
+
 /* ================= PRAY BUTTON ================= */
 document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("prayBtn");
     const thanks = document.getElementById("prayThanks");
+
     if (!btn) return;
 
     const KEY = "prayed_for_dad";
@@ -145,58 +191,87 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.disabled = true;
         btn.classList.add("done");
         btn.innerHTML = '<i class="fa-solid fa-check"></i> تقبّل الله دعاءك';
-        thanks.textContent = "جزاك الله خيراً، ولك بمثله ✦";
+
+        if (thanks) {
+            thanks.textContent = "جزاك الله خيراً، ولك بمثله ✦";
+        }
     };
 
     try {
-        if (localStorage.getItem(KEY)) markDone();
+        if (localStorage.getItem(KEY)) {
+            markDone();
+        }
     } catch (e) {}
 
     btn.addEventListener("click", () => {
         markDone();
+
         try {
             localStorage.setItem(KEY, "1");
         } catch (e) {}
     });
 });
 
-/* ================= CONTACT FORM (Laravel) ================= */
+
+/* ================= CONTACT FORM (Web3Forms) ================= */
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contactForm");
     const status = document.getElementById("formStatus");
-    if (!form) return;
+
+    if (!form || !status) return;
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const btn = form.querySelector(".send-btn");
-        btn.disabled = true;
+
+        if (btn) {
+            btn.disabled = true;
+        }
+
         status.className = "form-status";
         status.textContent = "Sending...";
 
         try {
-            const res = await fetch(form.action, {
+            const formData = new FormData(form);
+
+            formData.append(
+                "access_key",
+                "9aa8803f-5147-4443-8ef1-38b067df01b4"
+            );
+
+            formData.append(
+                "subject",
+                "New message from Malak's Portfolio"
+            );
+
+            const res = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: new FormData(form),   // فيه الـ _token من @csrf
-                headers: { Accept: "application/json" }
+                body: formData
             });
 
             const data = await res.json();
 
-            if (res.ok && data.ok) {
-                status.textContent = "Message sent successfully! ✦";
-                form.reset();
-            } else {
-                const firstError = data.errors
-                    ? Object.values(data.errors)[0][0]
-                    : data.message;
-                throw new Error(firstError || "failed");
+            if (!res.ok || !data.success) {
+                throw new Error(
+                    data.message || "Failed to send message. Please try again."
+                );
             }
+
+            status.textContent = "Message sent successfully! ✦";
+            form.reset();
+
         } catch (err) {
-            status.textContent = err.message || "Something went wrong, please try again.";
+            status.textContent =
+                err.message || "Something went wrong, please try again.";
+
             status.classList.add("error");
+
         } finally {
-            btn.disabled = false;
+            if (btn) {
+                btn.disabled = false;
+            }
         }
     });
 });
+
